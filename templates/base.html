@@ -1,0 +1,139 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <link rel="icon" href="{% static '/image/web.png' %}" sizes="16x16">
+
+    <!--title and all css link-->
+    <title>{% block title %}Base File{% endblock %}</title>
+    {% block link %} {% endblock %}
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-dark bg-dark">
+        <img src="{% static '/image/logo.png' %}" alt="DDU Logo" height="80" width="auto">
+        <a class="navbar-brand" href="{% url 'homePage' %}"><legend>TIMETABLE SCANNER</legend></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url 'homePage' %}">Home<span class="sr-only">(current)</span></a>
+                {% if request.user.is_authenticated %}
+                <a class="nav-item nav-link" href="{% url 'logoutPage' %}">Logout</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Addition Functions
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'scanTimeTable' %}">Scan Timetable</a>
+                        <a class="dropdown-item" href="{% url 'displayUserData' %}">View Your Data</a>
+                        <a class="dropdown-item" href="{% url 'searchData' %}">Search Data</a>
+                    </div>
+                </li>
+                {% else %}
+                <a class="nav-item nav-link" href="{% url 'loginPage' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'registrationPage' %}">Register</a>
+                {% endif %}
+                <a class="nav-item nav-link" href="{% url 'contactPage' %}">Contact Us</a>
+                <a class="nav-item nav-link" href="{% url 'aboutUs' %}">About Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!--Jumbotron-->
+  <!--  <div class="jumcontainer-fluid">
+        <img src="{% static '/image/logo.png' %}" alt="DDU Logo">
+        <h1 class="display-4">Timetable Scanner</h1>
+    </div>-->
+
+    <div class="container">
+        {% block body %}
+
+        {% endblock %}
+    </div>
+    <br>
+    <!-- Footer -->
+    <footer class="text-center text-lg-start" style="background-color: #10101010;">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+               <div class="col-lg-7 col-md-12 mb-4 mb-md-0">
+                    <img src="{% static '/image/logo.png' %}" alt="hmdesai">
+                    <p>
+                        <img src="https://img.icons8.com/ios-glyphs/30/000000/university.png"/>
+                        DHARMSINH DESAI UNIVERSITY
+                    </p>
+                    <address class="text-uppercase">
+                        <img src="https://img.icons8.com/ios-glyphs/24/000000/address.png"/>
+                        81, College Rd, Nalanda Nagar, Chalali, Nadiad, Gujarat 387001
+                    </address>
+                    
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Links</h5>
+
+                    <ul class="list-unstyled mb-0">
+                        <li>
+                            
+                            <a href="https://www.facebook.com/fotddu/" class="btn col-lg-5 col-md-4 mb-4 mb-md-0"><img src="{% static '/image/facebook.png' %}" alt="facebook logo"></a>
+                        </li>
+                        <li>
+                            
+                            <a href="https://www.ddu.ac.in/" class="btn col-lg-5 col-md-4 mb-4 mb-md-0"><img src="{% static '/image/google.png' %}" alt="google logo"></a>
+                        </li>
+                        <li>
+                            
+                            <a href="https://egov.ddit.ac.in/index.php?r=site/login" class="btn col-lg-5 col-md-4 mb-4 mb-md-0"><img src="{% static '/image/egov.png' %}" alt="egov logo"></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2021 Copyright:
+            <a class="text-dark" href="https://mdbootstrap.com/">TimetableScanner.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

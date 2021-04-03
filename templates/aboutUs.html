@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static '/css/aboutUs.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<h2 class="text-center">Our Team</h2>
+
+<div class="row container">
+  {% for d in data %}
+  <div class="text-centre flex col">
+    <div class="card">
+      <img src="{{BASE_DIR}}/{{d.image}}" class="card-img-top" height="150" width="auto">
+      <div class="card-body">
+        <div class="container card-text">
+          <h3>{{d.name}}</h3>
+          <p class="title">{{d.designation}}</p>
+          <p id="desc">{{d.description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

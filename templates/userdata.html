@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+User Data
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static '/css/ttdata.css' %}">
+<script src="{% static '/js/exportCSV.js' %}" type="text/JavaScript"></script>
+{% endblock %}
+
+{% block body %}
+<h1 class="text-center">Your Data is...</h1>
+<br>
+<div class="container">
+    <a onclick="exportTableToCSV('your_data.csv')" class="btn btn-success text-white">Export as CSV</a>
+    <br>
+    <h2>Hello, {{request.user.first_name}} {{request.user.last_name}}</h2>
+    <br>
+</div>
+<br>
+
+<div class="container">
+    <table class="table table-striped">
+        <tr class="thead-dark">
+            <th>#</th>
+            <th>Subject</th>
+            <th>Batch</th>
+            <th>Division</th>
+            <th>Year</th>
+            <th>Semester</th>
+        </tr>
+
+        {% for d in data %}
+        <tr>
+            <th>{{ forloop.counter }}</th>
+            <td>{{ d.subject }}</td>
+            <td>{{ d.batch }}</td>
+            <td>{{ d.timetable.division }}</td>
+            <td>{{ d.timetable.year }}</td>
+            <td>{{ d.timetable.semester }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}

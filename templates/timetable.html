@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Timetable Scan
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static '/css/timetable.css' %}">
+{% endblock %}
+
+{% block body %}
+<h1>Scan Timetable </h1>
+{% include 'message.html' %}
+{% include 'error.html' %}
+
+<div class="container-fluid">
+  <form method="post" enctype="multipart/form-data" action="{% url 'scanTimeTable' %}" class="jumbotron">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <h3>Timetable Division</h3>{{form.division}}
+    </div>
+    <div class="form-group">
+      <h3>Timetable Semester</h3>{{form.semester}}
+    </div>
+    <div class="form-group">
+      <h3>Timetable Year</h3>{{form.year}}
+    </div>
+    
+    <div class="form-group">
+      <h3>Timetable Image</h3>{{form.image}}
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-success" value="Scan TimeTable">
+    </div>
+  </form>
+</div>
+{% endblock %}

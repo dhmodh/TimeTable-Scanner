@@ -1,0 +1,12 @@
+{% if form.errors %}
+    {% for _, message in form.errors.items %}
+        <div class="container-fluid p-0">
+            <div class="alert alert-danger alert-dismissiable" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message|striptags }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}

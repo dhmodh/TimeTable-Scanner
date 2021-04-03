@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Extracted Data
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static '/css/ttdata.css' %}">
+<script src="{% static '/js/exportCSV.js' %}" type="text/JavaScript"></script>
+{% endblock %}
+
+{% block body %}
+
+<h1 class="text-center">Data Extracted from the Timetable</h1>
+<br>
+<div class="container">
+    <a onclick="exportTableToCSV('extracted_data.csv')" class="btn btn-success text-white">Export as CSV</a>
+</div>
+<br>
+<div class="container">
+    <table class="table table-striped">
+        <tr class="thead-dark">
+            <th>#</th>
+            <th>Subject</th>
+            <th>Batch</th>
+            <th>Faculty</th>
+            <th>Division</th>
+            <th>Year</th>
+            <th>Semester</th>
+        </tr>
+
+        {% for exdata in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            {% for d in exdata %}
+            <td>{{ d }}</td>
+            {% endfor %}
+            <td>{{ tt.division }}</td>
+            <td>{{ tt.year }}</td>
+            <td>{{ tt.semester }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+
+{% endblock %}

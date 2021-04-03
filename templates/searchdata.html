@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Search Data
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="{% static '/css/search.css' %}">
+<script src="{% static '/js/exportCSV.js' %}" type="text/JavaScript"></script>
+{% endblock %}
+
+{% block body %}
+<h1>Search Data </h1>
+{% include 'message.html' %}
+{% include 'error.html' %}
+
+<form method="post" enctype="multipart/form-data" action="{% url 'searchData' %}" class="jumbotron">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <h3>Search Catagory</h3>{{ form.catagory }}
+    </div>
+    <div class="form-group">
+        <h3>Search Content</h3>{{ form.content }}
+    </div>
+    <div class="btn center">
+        <input type="submit" class="btn btn-success" value="Search" />
+    </div>
+</form>
+
+{% if data is not None %}
+
+<div class="container">
+    <a onclick="exportTableToCSV('search_data.csv')" class="btn btn-success text-white">Export as CSV</a>
+</div>
+<br>
+<div class="container">
+    <table class="table table-striped table-hover">
+        <tr class="thead-dark">
+            <th>#</th>
+            <th>Subject</th>
+            <th>Batch</th>
+            <th>Faculty</th>
+            <th>Division</th>
+            <th>Year</th>
+            <th>Semester</th>
+        </tr>
+
+        {% for d in data %}
+        <tr>
+            <th>{{ forloop.counter }}</th>
+            <td>{{ d.subject }}</td>
+            <td>{{ d.batch }}</td>
+            <td>{{ d.faculty }}</td>
+            <td>{{ d.timetable.division }}</td>
+            <td>{{ d.timetable.year }}</td>
+            <td>{{ d.timetable.semester }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endif %}
+{% endblock %}

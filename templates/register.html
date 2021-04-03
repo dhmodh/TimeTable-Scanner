@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Registration Page
+{% endblock %}
+
+
+{% block body %}
+<h1>Registration </h1>
+{% include 'message.html' %}
+{% include 'error.html' %}
+
+
+<form method="post" enctype="multipart/form-data" action="{% url 'registrationPage' %}" class="jumbotron">
+    {% csrf_token %}
+    <div class="form-group">
+        <h3>Username</h3>{{form.username}}
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            {{form.username.help_text}}
+        </small>
+    </div>
+    <div class="form-group">
+        <h3>Password</h3>{{form.password1}}
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            {{form.password1.help_text|striptags}}
+        </small>
+    </div>
+    <div class="form-group">
+        <h3>Conform Password</h3>{{form.password2}}
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            {{form.password2.help_text}}
+        </small>
+    </div>
+    <div class="form-group">
+        <h3>First Name</h3>{{form.first_name}}
+    </div>
+    <div class="form-group">
+        <h3>Last Name</h3>{{form.last_name}}
+    </div>
+    <div class="form-group">
+        <h3>Short Name</h3>{{form.shortname}}
+        <small id="passwordHelpBlock" class="form-text text-muted">
+            {{form.shortname.help_text}}
+        </small>
+    </div>
+    <div class="form-group">
+        <h3>Email ID</h3>{{form.email}}
+    </div>
+    <div class="btn center">
+        <input type="submit" class="btn btn-success" value="Register" />
+    </div>
+</form><!-- form -->
+
+{% endblock %}
